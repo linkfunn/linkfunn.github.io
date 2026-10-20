@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linkfunn | Meet people at FUNAAB and beyond</title>
+<meta name="description" content="Linkfunn is a dating site built around FUNAAB life. Join the waitlist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5ff; --ink:#1e1646; --muted:#5b5578; --pink:#e4268b; --green:#1f9d55;
+  --soft:#ffe3f2; --card:#ffffff; --line:#e1dcf3;
+  --head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#14102e;--ink:#f3f0ff;--muted:#b4add4;--soft:#3a1a4d;--card:#1d1842;--line:#2f2a5c;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:6px}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+header{padding:22px 0}
+.logo{font-family:var(--head);font-weight:800;font-size:24px;letter-spacing:-.02em;text-decoration:none}
+.logo span{color:var(--pink)}
+
+.hero{display:grid;gap:36px;padding:28px 0 56px}
+@media(min-width:820px){.hero{grid-template-columns:1.15fr .85fr;align-items:center;padding:56px 0 80px}}
+h1{font-family:var(--head);font-weight:800;font-size:clamp(38px,8vw,66px);line-height:1.02;letter-spacing:-.03em;margin:0 0 18px}
+.lead{color:var(--muted);font-size:19px;max-width:46ch;margin:0 0 26px}
+
+.rings{position:relative;height:120px;width:210px;margin:0 0 26px}
+.ring{position:absolute;top:0;width:120px;height:120px;border-radius:50%;border:14px solid}
+.ring.a{left:0;border-color:var(--pink);animation:slideA 1.1s cubic-bezier(.2,.8,.2,1) both}
+.ring.b{left:90px;border-color:var(--green);animation:slideB 1.1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes slideA{from{transform:translateX(-40px)}to{transform:none}}
+@keyframes slideB{from{transform:translateX(40px)}to{transform:none}}
+@media(prefers-reduced-motion:reduce){.ring{animation:none!important}}
+
+form{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px}
+form h2{font-family:var(--head);font-size:24px;margin:0 0 4px;letter-spacing:-.01em}
+form p.sub{margin:0 0 18px;color:var(--muted);font-size:15px}
+label.f{display:block;font-weight:500;font-size:15px;margin-bottom:14px}
+input[type=text]{display:block;width:100%;margin-top:6px;padding:13px 14px;font:inherit;color:var(--ink);
+  background:var(--bg);border:1.5px solid var(--line);border-radius:12px}
+input[type=text]:focus{border-color:var(--pink);outline:none}
+fieldset{border:0;padding:0;margin:0 0 14px}
+legend{font-weight:500;font-size:15px;margin-bottom:8px;padding:0}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.opts label{flex:1 1 130px;display:flex;align-items:center;gap:8px;padding:11px 14px;border:1.5px solid var(--line);
+  border-radius:12px;cursor:pointer;font-size:15px}
+.opts input{accent-color:var(--pink)}
+.opts label:has(input:checked){border-color:var(--pink);background:var(--soft)}
+.age{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted);margin:4px 0 18px}
+.age input{margin-top:4px;accent-color:var(--pink);width:18px;height:18px;flex:none}
+button{width:100%;font:inherit;font-weight:700;font-size:17px;color:#fff;background:var(--pink);border:0;border-radius:14px;
+  padding:15px;cursor:pointer}
+button:hover{filter:brightness(1.06)}
+button:disabled{opacity:.6;cursor:wait}
+#msg{margin:14px 0 0;font-size:15px;min-height:1.4em}
+#msg.ok{color:var(--green);font-weight:700}
+#msg.err{color:var(--pink);font-weight:500}
+
+section.block{padding:56px 0;border-top:1px solid var(--line)}
+h3{font-family:var(--head);font-size:clamp(26px,5vw,36px);letter-spacing:-.02em;line-height:1.1;margin:0 0 26px}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:22px;counter-reset:s}
+@media(min-width:820px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{counter-increment:s;padding-top:14px;border-top:4px solid var(--pink)}
+.steps li:nth-child(2){border-color:var(--green)}
+.steps li:nth-child(3){border-color:var(--ink)}
+.steps b{display:block;font-family:var(--head);font-size:20px;margin-bottom:4px}
+.steps li::before{content:"Step " counter(s);font-size:13px;color:var(--muted);display:block}
+.steps span{color:var(--muted)}
+
+.safe{display:grid;gap:14px;max-width:62ch}
+.safe p{margin:0;padding-left:18px;border-left:4px solid var(--green)}
+.safe b{font-weight:700}
+footer{padding:34px 0 44px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="#">Link<span>funn</span></a></div></header>
+
+<main>
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <div class="rings" aria-hidden="true"><div class="ring a"></div><div class="ring b"></div></div>
+      <h1>Meet someone at FUNAAB. Or beyond.</h1>
+      <p class="lead">Linkfunn is a dating site built around FUNAAB life, open to everyone. Join the waitlist and get in first when we open.</p>
+    </div>
+
+    <form id="wl" novalidate>
+      <h2>Join the waitlist</h2>
+      <p class="sub">We’ll message you once when Linkfunn opens.</p>
+      <label class="f">Your name
+        <input type="text" id="name" autocomplete="given-name" maxlength="60" required>
+      </label>
+      <label class="f">Phone number or email
+        <input type="text" id="contact" autocomplete="email" maxlength="100" required>
+      </label>
+      <fieldset>
+        <legend>Are you part of FUNAAB?</legend>
+        <div class="opts">
+          <label><input type="radio" name="funaab" value="yes" checked> Yes, I am</label>
+          <label><input type="radio" name="funaab" value="no"> No, I’m outside</label>
+        </div>
+      </fieldset>
+      <label class="age"><input type="checkbox" id="age" required> I’m 18 or older.</label>
+      <button type="submit" id="btn">Join the waitlist</button>
+      <p id="msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<section class="block"><div class="wrap">
+  <h3>How Linkfunn works</h3>
+  <ol class="steps">
+    <li><b>Sign up with your phone</b><span>One number, one account. No matric number needed.</span></li>
+    <li><b>Get your FUNAAB badge</b><span>Students, alumni and staff verify once. Everyone else can join without it.</span></li>
+    <li><b>Like, match, chat</b><span>Chat opens only when you both like each other.</span></li>
+  </ol>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <h3>Your privacy comes first</h3>
+  <div class="safe">
+    <p><b>Invisible mode.</b> Browse profiles without being seen.</p>
+    <p><b>No matric numbers.</b> We never ask for one.</p>
+    <p><b>Report and block.</b> Available on every profile and chat.</p>
+    <p><b>Adults only.</b> Linkfunn is for people 18 and over.</p>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">Linkfunn. We only use your details to tell you when we launch.</div></footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCM9005wPsG59mcUN_UlhCIdUrNrSYOm5w",
+  authDomain: "funaab-connect-bae8e.firebaseapp.com",
+  projectId: "funaab-connect-bae8e",
+  storageBucket: "funaab-connect-bae8e.firebasestorage.app",
+  messagingSenderId: "808262376505",
+  appId: "1:808262376505:web:cc3252ee5812d0b3b681e8"
+};
+
+const db = getFirestore(initializeApp(firebaseConfig));
+const form = document.getElementById("wl");
+const msg = document.getElementById("msg");
+const btn = document.getElementById("btn");
+
+function show(text, cls){ msg.textContent = text; msg.className = cls || ""; }
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const contact = document.getElementById("contact").value.trim();
+  const isFunaab = form.funaab.value === "yes";
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+  const isPhone = /^\+?[0-9\s-]{10,15}$/.test(contact);
+
+  if (!name) return show("Enter your name.", "err");
+  if (!isEmail && !isPhone) return show("Enter a valid phone number or email.", "err");
+  if (!document.getElementById("age").checked) return show("You must be 18 or older to join.", "err");
+
+  btn.disabled = true; show("Joining…");
+  try {
+    await addDoc(collection(db, "waitlist"), { name, contact, isFunaab, createdAt: serverTimestamp() });
+    form.reset();
+    show("You’re on the list. We’ll reach out when Linkfunn opens.", "ok");
+  } catch (err) {
+    console.error(err);
+    show("Couldn’t save that. Check your connection and try again.", "err");
+  } finally { btn.disabled = false; }
+});
+</script>
+</body>
+</html>
